@@ -4,7 +4,7 @@ const progressText = document.getElementById("progressText");
 const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById("progressBarFull");
 let currentQuestion = {};
-let acceptionAnswers = true;
+let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -67,14 +67,14 @@ getNewQuestion = () => {
     });
 
     availableQuestions.splice(questionIndex, 1);
-    acceptionAnswers = true;
+    acceptingAnswers = true;
 };
 
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
-        if(!acceptionAnswers) return;
+        if(!acceptingAnswers) return;
 
-        acceptionAnswers = false;
+        acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
 
